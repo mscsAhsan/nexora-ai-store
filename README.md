@@ -1,7 +1,7 @@
 # Nexavo AI — AI tools & digital subscriptions store (Next.js + Tailwind)
 
 A complete working store, rebuilt from the aitoolspro.org sample layout:
-browse/search 81 premium subscriptions, register & login, cart, checkout,
+browse/search 349 premium subscriptions, register & login, cart, checkout,
 license delivery, an interactive customer dashboard, an interactive admin
 panel, a Safepay settings page, and a Cohere AI chatbot. Every link in the
 site goes to a real page.
@@ -22,7 +22,7 @@ endorsed by, any of those brands. See `CATALOGUE.md` for the full list.
 - Manual: `npm install` then `npm run dev` -> http://localhost:3000
 
 The database is created automatically (file `local.db`, or Turso when
-`TURSO_DATABASE_URL` is set) and seeds the full 81-tool catalogue on first
+`TURSO_DATABASE_URL` is set) and seeds the full 349-tool catalogue on first
 run. No other setup is needed to test.
 
 ## Default admin login (CHANGE THIS before going live!)
@@ -36,9 +36,9 @@ run. No other setup is needed to test.
 - Chatbot: floating button on every page → `POST /api/chat` (Cohere when configured, FAQ fallback otherwise)
 
 ## Catalogue
-81 tools in 13 categories (AI Chat, AI Video, AI Image, Writing, Coding,
+349 tools in 13 categories (AI Chat, AI Video, AI Image, Writing, Coding,
 Design, Video Editing, Audio, Productivity, Learning, VPN & Security,
-Entertainment, Business), 42 brands, Rs 199 – Rs 16,800. Prices are the
+Entertainment, Business), 100+ brands, Rs 199 – Rs 191,300 (most under Rs 17,000; a few high-credit Veo/KLING admin packs are higher). Prices are the
 sample's USD price × Rs 280, rounded to the nearest Rs 50, minimum Rs 199.
 Each tool lists brand, duration, access type (Private / Shared / Invite /
 CDK / Redeem Link / Slot / API Key), warranty and delivery (Instant /
@@ -46,9 +46,17 @@ Manual review). Full list: `CATALOGUE.md`.
 
 Existing databases migrate automatically on next deploy (`lib/db.js`):
 new `brand / duration / access_type / warranty / delivery` columns are added
-if missing, the 81 sample tools are inserted if absent, and the old
+if missing, the 349 sample tools are inserted/upserted if absent, and the old
 fictional tools (ChatPilot, PixelForge, etc.) are set inactive — never
 deleted, so old orders still work.
+
+## Exact-copy notes (v2 — matches the aitoolspro.org sample)
+- **Design system taken from the sample's own CSS:** warm cream background `#FBF9F5`, ink `#282330`, muted `#625B6B`, amber primary `#F3A620` (hover `#DE910C`, dark amber `#AD5A00`), white clay cards (20-24px radius, soft shadow, warm border), Inter / Inter Tight / Manrope type, 12px-radius buttons, 1384px max width.
+- **Homepage in the sample's exact order:** hero "Premium AI Tools at Unbeatable Prices" + search + benefits, brand marquee, "Find the Right Tool Faster" brand grid (sample counts: ChatGPT 66, Codex 49, Google Veo 37, Grok 36, YouTube 36, Gemini 33, Claude 31, KLING 30, CapCut 27, Adobe 22 — full-site counts, the homepage list itself is 349), "Subscriptions available right now", "How It Works in 4 Simple Steps", "Trusted by 2,800+ Creators & Pros" (Hamza K., Sarah M., Bilal A.) + WELCOME10, "Featured this week", "Tested before delivery to your panel", "Instant Access to Your Tools in Four Simple Steps", "What actually sets our reseller rates", "How to choose an AI tool plan that fits how you work", "Questions Buyers Ask Us First", "Know the plan before you pay", then Pricing + CTA.
+- **Catalogue:** all 349 products from the sample homepage, in the sample's order, with the sample's names/brands/durations/access/warranty. Prices are sample USD x Rs 280, rounded to nearest Rs 50, min Rs 199. Brand/product images copied from the sample into `public/images/` (69 tools have a real image; the rest show a branded initial tile + category icon — no blank tiles).
+- **WhatsApp:** floating button bottom-left on every page + footer/contact link, `https://wa.me/923416985286` with prefilled text "Hi Nexavo AI, I need help with an order." Number lives in `lib/site.js` / `NEXT_PUBLIC_WHATSAPP_NUMBER`.
+- **Chatbot:** replies are formatted with **bold**, bullet/numbered lists and clickable `[tool](/tools/slug)` links (see `components/Chatbot.js` + `lib/chat.js`). It answers only from live DB data.
+- **What was adapted (not copied):** brand Nexavo AI (not AI Tools Pro), PKR instead of $, Safepay (card/JazzCash/Easypaisa/Raast) + manual payment instead of Binance/Crypto, WordPress/WooCommerce replaced by Next.js — so admin, checkout, dashboards and the chatbot are Nexavo's own, not WordPress admin. No sample logo was reused.
 
 ## How buying works (fully automatic)
 1. Customer adds tools to the cart and goes to checkout (login required).
@@ -132,6 +140,6 @@ without it (see manual/test payment above). When you are ready:
 
 ## Customize
 - Brand name: search "Nexavo" in `components/Logo.js`, `components/Footer.js`, `app/layout.js`.
-- Colors / animations: `tailwind.config.js` (light ivory `#FAF7F0`, emerald `#0E7A5F`, amber `#F59E0B`) and `app/globals.css` (page-transition + chatbot animations). Plans: `lib/tools.js` (prices are whole PKR). Blog posts: `lib/blog.js`.
+- Colors / animations: `tailwind.config.js` (sample palette: warm cream `#FBF9F5`, ink `#282330`, amber `#F3A620` primary, sky `#0EA5E9`, pink `#DB2777`, Manrope/Inter) and `app/globals.css` (page-transition + chatbot animations). Plans: `lib/tools.js` (prices are whole PKR). Blog posts: `lib/blog.js`.
 - Privacy and Terms pages are generic templates — have them reviewed before launch.
 - Currency is PKR. A plan is charged once per purchase (no automatic recurring billing yet).

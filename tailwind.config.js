@@ -4,22 +4,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        midnight: "#FAF7F0",
+        midnight: "#FBF9F5",
         card: "#FFFFFF",
-        line: "#E7DFD0",
-        violet: { brand: "#0E7A5F" },
-        emerald: { brand: "#0E7A5F" },
-        cyan: { brand: "#0F766E" },
-        pink: { brand: "#F59E0B" },
-        muted: "#64748B",
-        ink: "#1F2937",
+        line: "#EDE9E0",
+        violet: { brand: "#F3A620" },
+        emerald: { brand: "#F3A620" },
+        cyan: { brand: "#0EA5E9" },
+        pink: { brand: "#DB2777" },
+        muted: "#625B6B",
+        ink: "#282330",
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
+        sans: ["Manrope", "Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
+        display: ["Inter Tight", "Inter", "Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       backgroundImage: {
-        "brand-gradient": "linear-gradient(135deg,#0E7A5F 0%,#0F766E 100%)",
-        "cta-gradient": "linear-gradient(135deg,#0E7A5F 0%,#F59E0B 100%)",
+        "brand-gradient": "linear-gradient(135deg,#F3A620 0%,#F4AD33 100%)",
+        "cta-gradient": "linear-gradient(135deg,#F3A620 0%,#DB2777 100%)",
       },
       keyframes: {
         float: { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-18px)" } },
