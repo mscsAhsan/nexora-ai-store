@@ -14,19 +14,19 @@ export default function Footer() {
       <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <Logo />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">Discover, compare and buy the best AI tools for writing, design, video and coding.</p>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">Discover, compare and buy premium AI tools and digital subscriptions in PKR — ChatGPT, Gemini, Canva, CapCut, Adobe, Figma, Spotify and more, with instant delivery in Pakistan.</p>
           <NewsletterForm />
         </div>
         {cols.map(([t, ls]) => (
           <div key={t}>
             <h4 className="mb-4 font-semibold">{t}</h4>
             <ul className="space-y-2.5 text-sm text-muted">
-              {ls.map(([l, h]) => <li key={l}><Link href={h} className="hover:text-white">{l}</Link></li>)}
+              {ls.map(([l, h]) => <li key={l}><Link href={h} className="hover:text-violet-brand">{l}</Link></li>)}
             </ul>
           </div>
         ))}
       </div>
-      <p className="mt-12 border-t border-line pt-6 text-center text-sm text-muted">&copy; 2026 Nexora AI. All rights reserved.</p>
+      <p className="mt-12 border-t border-line pt-6 text-center text-sm text-muted">&copy; 2026 Nexavo AI. All rights reserved. Nexavo AI is not affiliated with, or endorsed by, any brand listed — these are third-party subscriptions resold as access plans.</p>
     </footer>
   );
 }

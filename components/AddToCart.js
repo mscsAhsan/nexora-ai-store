@@ -1,7 +1,8 @@
 "use client";
 import { useCart } from "./CartContext";
+import { formatPKR } from "@/lib/format";
 
 export default function AddToCart({ tool }) {
   const { add } = useCart();
-  return <button onClick={() => add(tool)} className="btn-primary text-lg">Buy now - ${tool.price}/mo</button>;
+  return <button onClick={() => add(tool)} className="btn-primary text-lg">Buy now - {formatPKR(tool.price)}/mo</button>;
 }

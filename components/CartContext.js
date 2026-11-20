@@ -9,10 +9,10 @@ export function CartProvider({ children }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    try { setItems(JSON.parse(localStorage.getItem("nexora-cart") || "[]")); } catch {}
+    try { setItems(JSON.parse(localStorage.getItem("nexavo-cart") || "[]")); } catch {}
   }, []);
   useEffect(() => {
-    try { localStorage.setItem("nexora-cart", JSON.stringify(items)); } catch {}
+    try { localStorage.setItem("nexavo-cart", JSON.stringify(items)); } catch {}
   }, [items]);
 
   const add = (tool) => {

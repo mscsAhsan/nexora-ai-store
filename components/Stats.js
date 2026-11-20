@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal";
 
-const data = [["500", "+", "AI tools listed"], ["12", "k+", "Happy customers"], ["4.8", "/5", "Average rating"], ["24", "/7", "Instant access"]];
+const data = [["81", "", "Premium tools listed"], ["2800", "+", "Creators & pros"], ["4.8", "/5", "Average rating"], ["60", "s", "Instant delivery"]];
 
 function Count({ to, suffix }) {
   const ref = useRef(null);
@@ -23,7 +23,7 @@ function Count({ to, suffix }) {
     io.observe(el);
     return () => io.disconnect();
   }, [to]);
-  const shown = to.includes(".") ? v.toFixed(1) : Math.round(v);
+  const shown = to.includes(".") ? v.toFixed(1) : Math.round(v).toLocaleString("en-PK");
   return <span ref={ref}>{shown}{suffix}</span>;
 }
 
