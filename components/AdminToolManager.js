@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { categories, iconNames } from "@/lib/tools";
 import { formatPKR } from "@/lib/format";
 
-const empty = { id: null, name: "", slug: "", brand: "", category: "AI Chat", icon: "sparkle", price: 999, rating: 4.5, reviews: 0, from: "#0E7A5F", to: "#0F766E", description: "", features: "", url: "", file_url: "", active: true, duration: "1 Month", accessType: "Private", warranty: "Full warranty", delivery: "Instant" };
+const empty = { id: null, name: "", slug: "", brand: "", category: "AI Chat", icon: "sparkle", price: 999, rating: 4.5, reviews: 0, from: "#F3A620", to: "#0EA5E9", description: "", features: "", url: "", file_url: "", active: true, duration: "1 Month", accessType: "Private", warranty: "Full warranty", delivery: "Instant" };
 
 export default function AdminToolManager({ tools }) {
   const [f, setF] = useState(empty);

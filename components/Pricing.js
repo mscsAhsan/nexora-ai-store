@@ -32,7 +32,7 @@ export default function Pricing({ heading = true }) {
           return (
             <Reveal key={p.name} delay={i * 100}>
               <div className={p.hot ? "rounded-[26px] bg-brand-gradient p-[2px] shadow-2xl shadow-violet-brand/30 md:scale-[1.04]" : ""}>
-                <div className={`relative rounded-3xl p-8 ${p.hot ? "bg-[#ECFDF5]" : "border border-line bg-card"}`}>
+                <div className={`relative rounded-3xl p-8 ${p.hot ? "bg-[#FFF8EF]" : "border border-line bg-card"}`}>
                   {p.hot && <span className="absolute right-6 top-6 rounded-full bg-pink-brand px-3 py-1 text-[11px] font-bold tracking-wider">POPULAR</span>}
                   <h3 className="text-2xl font-bold">{p.name}</h3>
                   <p className="mt-4"><span className="text-5xl font-extrabold">{formatPKR(price)}</span><span className="ml-1.5 text-muted">/month</span></p>

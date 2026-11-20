@@ -5,6 +5,50 @@ import Link from "next/link";
 const QUICK = ["How do I buy?", "Payment methods?", "ChatGPT Plus price?", "How fast is delivery?"];
 const FIRST = "Hi! I am the Nexavo AI assistant. Ask me about any tool, price, payment or delivery — for example 'ChatGPT Plus price?' or 'How do I buy?'";
 
+// Render a bot reply as structured text — no new dependency.
+// Supports **bold**, - bullet lists, 1. numbered lists, paragraphs, and
+// markdown links [text](/tools/slug) rendered as real links.
+function renderInline(text, key) {
+  const parts = String(text).split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g);
+  return parts.map((part, i) => {
+    const b = part.match(/^\*\*(.+)\*\*$/);
+    if (b) return <b key={`${key}-${i}`}>{b[1]}</b>;
+    const l = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (l) return <Link key={`${key}-${i}`} href={l[2]} className="font-semibold text-[#AD5A00] underline">{l[1]}</Link>;
+    return <span key={`${key}-${i}`}>{part}</span>;
+  });
+}
+
+function renderRich(text) {
+  const lines = String(text).split("\n");
+  const blocks = [];
+  let list = null;
+  const flush = () => { if (list) { blocks.push(list); list = null; } };
+  lines.forEach((line, i) => {
+    const bullet = line.match(/^\s*[-*]\s+(.+)$/);
+    const num = line.match(/^\s*\d+[.)]\s+(.+)$/);
+    if (bullet || num) {
+      if (!list || list.kind !== (bullet ? "ul" : "ol")) { flush(); list = { kind: bullet ? "ul" : "ol", items: [] }; }
+      list.items.push(bullet ? bullet[1] : num[1]);
+    } else if (line.trim()) {
+      flush();
+      blocks.push({ kind: "p", text: line.trim() });
+    } else {
+      flush();
+    }
+  });
+  flush();
+  return blocks.map((b, i) =>
+    b.kind === "ul" ? (
+      <ul key={i} className="list-disc space-y-1 pl-5">{b.items.map((it, j) => <li key={j}>{renderInline(it, `b${i}-${j}`)}</li>)}</ul>
+    ) : b.kind === "ol" ? (
+      <ol key={i} className="list-decimal space-y-1 pl-5">{b.items.map((it, j) => <li key={j}>{renderInline(it, `b${i}-${j}`)}</li>)}</ol>
+    ) : (
+      <p key={i}>{renderInline(b.text, `p${i}`)}</p>
+    )
+  );
+}
+
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState([{ role: "bot", text: FIRST }]);
@@ -40,32 +84,32 @@ export default function Chatbot() {
   return (
     <>
       {!open && (
-        <button onClick={() => setOpen(true)} aria-label="Open chat" className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-[#0E7A5F] to-[#0F766E] text-2xl text-white shadow-xl shadow-emerald-900/30 transition hover:scale-110 active:scale-95">
+        <button onClick={() => setOpen(true)} aria-label="Open chat" className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-[#F3A620] to-[#0EA5E9] text-2xl text-white shadow-xl shadow-amber-900/30 transition hover:scale-110 active:scale-95">
           💬
         </button>
       )}
       {open && (
         <div className="chat-panel fixed bottom-5 right-5 z-50 flex h-[540px] w-[calc(100vw-2.5rem)] max-w-sm flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-2xl">
-          <div className="flex items-center justify-between bg-gradient-to-r from-[#0E7A5F] to-[#0F766E] px-5 py-4 text-white">
+          <div className="flex items-center justify-between bg-gradient-to-r from-[#F3A620] to-[#0EA5E9] px-5 py-4 text-white">
             <div>
               <p className="font-bold">Nexavo Assistant</p>
               <p className="text-xs opacity-80">{ai ? `Answering with ${ai}` : "Ask about tools, prices, payment & delivery"}</p>
             </div>
             <button onClick={() => setOpen(false)} aria-label="Close chat" className="rounded-full p-2 text-xl hover:bg-white/20">✕</button>
           </div>
-          <div className="flex-1 space-y-3 overflow-y-auto bg-[#FAF7F0] p-4">
+          <div className="flex-1 space-y-3 overflow-y-auto bg-[#FBF9F5] p-4">
             {msgs.map((m, i) => (
-              <div key={i} className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${m.role === "user" ? "ml-auto bg-[#0E7A5F] text-white" : "bg-white text-[#1F2937] shadow-sm"}`}>{m.text}</div>
+              <div key={i} className={`max-w-[85%] space-y-2 rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${m.role === "user" ? "ml-auto bg-[#F3A620] text-white" : "bg-white text-[#282330] shadow-sm"}`}>{m.role === "bot" ? renderRich(m.text) : m.text}</div>
             ))}
             {busy && (
               <div className="flex w-fit gap-1.5 rounded-2xl bg-white px-4 py-3 shadow-sm">
-                {[0, 1, 2].map((i) => <span key={i} className="typing-dot h-2 w-2 rounded-full bg-[#0E7A5F]" style={{ animationDelay: `${i * 0.15}s` }} />)}
+                {[0, 1, 2].map((i) => <span key={i} className="typing-dot h-2 w-2 rounded-full bg-[#F3A620]" style={{ animationDelay: `${i * 0.15}s` }} />)}
               </div>
             )}
             <div ref={endRef} />
           </div>
           <div className="flex flex-wrap gap-2 border-t border-line bg-white px-4 pt-3">
-            {QUICK.map((q) => <button key={q} onClick={() => send(q)} className="rounded-full border border-line bg-[#FAF7F0] px-3 py-1.5 text-xs font-semibold text-[#0E7A5F] hover:border-[#0E7A5F]">{q}</button>)}
+            {QUICK.map((q) => <button key={q} onClick={() => send(q)} className="rounded-full border border-line bg-[#FBF9F5] px-3 py-1.5 text-xs font-semibold text-[#AD5A00] hover:border-[#F3A620]">{q}</button>)}
           </div>
           <form onSubmit={(e) => { e.preventDefault(); send(); }} className="flex gap-2 bg-white p-3">
             <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask about a tool or price..." maxLength={500} className="input !py-2.5" />

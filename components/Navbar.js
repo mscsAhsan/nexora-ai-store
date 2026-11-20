@@ -6,11 +6,12 @@ import Logo from "./Logo";
 import { Icon } from "./Icons";
 import { useCart } from "./CartContext";
 
-const links = [["Tools", "/tools"], ["Pricing", "/pricing"], ["Blog", "/blog"], ["Support", "/contact"]];
+const links = [["Shop", "/tools"], ["Pricing", "/pricing"], ["Blog", "/blog"], ["Support", "/contact"]];
 
 export default function Navbar({ user }) {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [q, setQ] = useState("");
   const { items, setOpen } = useCart();
   const router = useRouter();
 
@@ -27,11 +28,15 @@ export default function Navbar({ user }) {
 
   return (
     <header className={`fixed inset-x-0 top-0 z-40 transition ${scrolled || menu ? "border-b border-line bg-white/85 backdrop-blur-xl" : ""}`}>
-      <div className="section flex h-[76px] items-center justify-between">
+      <div className="section flex h-[76px] items-center gap-6">
         <Logo />
         <nav className="hidden items-center gap-9 md:flex">
           {links.map(([l, h]) => <Link key={l} href={h} className="text-[15px] text-muted transition hover:text-violet-brand">{l}</Link>)}
         </nav>
+        <form onSubmit={(e) => { e.preventDefault(); router.push(`/tools?q=${encodeURIComponent(q)}`); }} className="hidden min-w-0 flex-1 max-w-xs items-center gap-2 rounded-full border border-line bg-white px-4 py-2 lg:flex">
+          <Icon name="search" className="shrink-0 text-muted" size={16} />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search tools..." aria-label="Search tools" className="w-full bg-transparent text-sm outline-none placeholder:text-[#857D8E]" />
+        </form>
         <div className="flex items-center gap-3">
           <button onClick={() => setOpen(true)} className="relative rounded-full border border-line bg-white p-2.5 hover:border-violet-brand" aria-label="Cart">
             <Icon name="cart" size={19} />

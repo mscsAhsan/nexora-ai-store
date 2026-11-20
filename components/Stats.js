@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal";
 
-const data = [["81", "", "Premium tools listed"], ["2800", "+", "Creators & pros"], ["4.8", "/5", "Average rating"], ["60", "s", "Instant delivery"]];
+const data = [["349", "", "Premium tools listed"], ["2800", "+", "Creators & pros"], ["4.8", "/5", "Average rating"], ["60", "s", "Instant delivery"]];
 
 function Count({ to, suffix }) {
   const ref = useRef(null);

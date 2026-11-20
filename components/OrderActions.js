@@ -10,7 +10,7 @@ export default function OrderActions({ id, status }) {
   }
   return (
     <div className="flex gap-2">
-      {status === "pending" && <button onClick={() => act("approve")} className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-400 hover:bg-emerald-500/30">Approve</button>}
+      {status === "pending" && <button onClick={() => act("approve")} className="rounded-full bg-amber-500/20 px-3 py-1 text-xs font-bold text-emerald-400 hover:bg-amber-500/30">Approve</button>}
       {status === "pending" && <button onClick={() => act("cancel")} className="rounded-full bg-pink-500/20 px-3 py-1 text-xs font-bold text-pink-400 hover:bg-pink-500/30">Cancel</button>}
     </div>
   );

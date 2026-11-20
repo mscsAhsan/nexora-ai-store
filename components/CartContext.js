@@ -16,7 +16,7 @@ export function CartProvider({ children }) {
   }, [items]);
 
   const add = (tool) => {
-    setItems((p) => (p.find((i) => i.slug === tool.slug) ? p : [...p, { slug: tool.slug, name: tool.name, price: tool.price, icon: tool.icon, from: tool.from, to: tool.to }]));
+    setItems((p) => (p.find((i) => i.slug === tool.slug) ? p : [...p, { slug: tool.slug, name: tool.name, price: tool.price, icon: tool.icon, from: tool.from, to: tool.to, image: tool.image || "", brand: tool.brand || "" }]));
     setOpen(true);
   };
   const remove = (slug) => setItems((p) => p.filter((i) => i.slug !== slug));

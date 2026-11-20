@@ -30,7 +30,7 @@ export default function AdminDashboard({ stats, orders, daily, methods, topTools
             {daily.map((d) => (
               <div key={d.day} className="flex flex-1 flex-col items-center gap-2">
                 <span className="text-xs font-bold">{d.total ? formatPKR(d.total) : ""}</span>
-                <div className="w-full rounded-t-lg bg-gradient-to-t from-[#0E7A5F] to-[#0F766E]" style={{ height: `${Math.max(4, (d.total / maxDay) * 110)}px` }} />
+                <div className="w-full rounded-t-lg bg-gradient-to-t from-[#F3A620] to-[#0EA5E9]" style={{ height: `${Math.max(4, (d.total / maxDay) * 110)}px` }} />
                 <span className="text-xs text-muted">{d.day.slice(5)}</span>
               </div>
             ))}
@@ -47,7 +47,7 @@ export default function AdminDashboard({ stats, orders, daily, methods, topTools
           <h2 className="mt-8 text-lg font-bold">Top-selling tools</h2>
           <ul className="mt-4 space-y-3">
             {topTools.length ? topTools.map((t) => (
-              <li key={t.name} className="flex justify-between text-sm"><Link href={`/tools/${t.tool_slug}`} className="hover:text-[#0E7A5F]">{t.name}</Link><b>{t.sold} sold</b></li>
+              <li key={t.name} className="flex justify-between text-sm"><Link href={`/tools/${t.tool_slug}`} className="hover:text-[#F3A620]">{t.name}</Link><b>{t.sold} sold</b></li>
             )) : <li className="text-sm text-muted">No sales yet.</li>}
           </ul>
         </div>

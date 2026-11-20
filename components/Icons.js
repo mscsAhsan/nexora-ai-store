@@ -34,12 +34,28 @@ export function Star({ size = 14 }) {
   );
 }
 
+export function brandInitials(tool) {
+  const b = (tool.brand || tool.name || "?").replace(/[^A-Za-z0-9 ]/g, "").trim().split(/\s+/).filter(Boolean);
+  return (b.slice(0, 2).map((w) => w[0]).join("") || "?").toUpperCase();
+}
+
+// Every tool shows an image or an icon — never a blank tile.
+// If the tool has a sample image (public/images/…), show it; otherwise show
+// a branded initial tile in the brand/category colour with the category icon.
 export function ToolTile({ tool, size = 56 }) {
+  const initials = brandInitials(tool);
   return (
-    <div className="relative grid place-items-center rounded-2xl text-white shadow-lg"
-      style={{ width: size, height: size, background: `linear-gradient(135deg, ${tool.from}, ${tool.to})`, boxShadow: `0 10px 30px -8px ${tool.from}88` }}>
-      <Icon name={tool.icon} size={size * 0.46} />
-      <span className="absolute inset-0 rounded-2xl ring-1 ring-white/20" />
+    <div className="relative grid shrink-0 place-items-center overflow-hidden rounded-2xl text-white shadow-lg"
+      style={{ width: size, height: size, background: `linear-gradient(135deg, ${tool.from || "#F3A620"}, ${tool.to || "#F4AD33"})`, boxShadow: `0 10px 30px -8px ${(tool.from || "#F3A620")}88` }}>
+      {tool.image ? (
+        <img src={tool.image} alt={tool.name || tool.brand || "Tool"} width={size} height={size} className="h-full w-full object-cover" />
+      ) : (
+        <>
+          <span className="text-lg font-extrabold tracking-tight" style={{ fontSize: Math.max(13, size * 0.3) }}>{initials}</span>
+          <span className="absolute bottom-1 right-1 rounded-full bg-black/25 p-0.5"><Icon name={tool.icon || "sparkle"} size={Math.max(10, size * 0.22)} /></span>
+        </>
+      )}
+      <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-black/5" />
     </div>
   );
 }

@@ -1,17 +1,20 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Icon, ToolTile } from "./Icons";
 import { formatPKR } from "@/lib/format";
 
-function Floating({ tool, className, delay }) {
-  return (
-    <div className={`glass absolute hidden items-center gap-3 rounded-2xl p-3 pr-5 shadow-2xl lg:flex animate-float ${className}`} style={{ animationDelay: delay }}>
-      <ToolTile tool={tool} size={44} />
-      <div><p className="text-sm font-semibold">{tool.name}</p><p className="text-xs text-muted">{formatPKR(tool.price)}/mo</p></div>
-    </div>
-  );
-}
+// Sample hero (aitoolspro.org), rebranded to Nexavo AI:
+// eyebrow "#1 AI TOOLS MARKETPLACE", headline "Premium AI Tools at
+// Unbeatable Prices", search, benefits row, marketplace visual.
+const BENEFITS = [
+  ["Up to", "90% OFF"],
+  ["100%", "Genuine Accounts"],
+  ["Instant", "Delivery"],
+  ["24/7", "Support"],
+  ["Premium", "Access"],
+];
 
 export default function Hero({ tools }) {
   const [q, setQ] = useState("");
@@ -19,42 +22,46 @@ export default function Hero({ tools }) {
   const go = (e) => { e.preventDefault(); router.push(`/tools?q=${encodeURIComponent(q)}`); };
 
   return (
-    <section className="noise relative isolate overflow-hidden pb-24 pt-40">
-      <div className="grid-bg absolute inset-0 -z-10" />
-      <div className="absolute -left-32 top-0 -z-10 h-[520px] w-[520px] animate-blob rounded-full bg-violet-brand/30 blur-[120px]" />
-      <div className="absolute -right-24 top-10 -z-10 h-[460px] w-[460px] animate-blob rounded-full bg-cyan-brand/20 blur-[120px]" style={{ animationDelay: "-5s" }} />
-      <div className="absolute left-1/3 top-72 -z-10 h-[380px] w-[380px] animate-blob rounded-full bg-pink-brand/15 blur-[120px]" style={{ animationDelay: "-9s" }} />
-
-      {/* rotating orbit ring */}
-      <svg className="absolute left-1/2 top-24 -z-10 h-[900px] w-[900px] -translate-x-1/2 animate-spin-slow opacity-30" viewBox="0 0 900 900" fill="none">
-        <circle cx="450" cy="450" r="440" stroke="url(#g1)" strokeWidth="1.2" strokeDasharray="4 12" />
-        <circle cx="450" cy="450" r="330" stroke="url(#g1)" strokeWidth="1" strokeDasharray="2 10" />
-        <circle cx="450" cy="10" r="7" fill="#0F766E" /><circle cx="120" cy="680" r="6" fill="#F59E0B" /><circle cx="780" cy="560" r="5" fill="#0E7A5F" />
-        <defs><linearGradient id="g1" x1="0" y1="0" x2="900" y2="900"><stop stopColor="#0E7A5F" /><stop offset="1" stopColor="#0F766E" /></linearGradient></defs>
-      </svg>
-
-      {tools[0] && <Floating tool={tools[0]} className="left-[6%] top-[190px]" delay="0s" />}
-      {tools[1] && <Floating tool={tools[1]} className="right-[6%] top-[230px]" delay="-2s" />}
-      {tools[2] && <Floating tool={tools[2]} className="left-[10%] top-[470px]" delay="-4s" />}
-      {tools[3] && <Floating tool={tools[3]} className="right-[9%] top-[500px]" delay="-1s" />}
-
-      <div className="section text-center">
-        <div className="glass mx-auto inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-[13.5px] font-semibold text-[#0E7A5F]">
-          <span className="relative flex h-2.5 w-2.5"><span className="absolute inset-0 animate-pulse-ring rounded-full bg-cyan-brand" /><span className="relative h-2.5 w-2.5 rounded-full bg-cyan-brand" /></span>
-          81 premium subscriptions in PKR, one marketplace
+    <section className="relative overflow-hidden border-b border-[#FFE9C9] pb-16 pt-36" style={{ background: "linear-gradient(135deg,#fff 0%,#FFFDF8 54%,#FFF7F0 100%)" }}>
+      <div className="section grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr]">
+        <div>
+          <span className="eyebrow">#1 AI TOOLS MARKETPLACE</span>
+          <h1 className="mt-5 text-[2.6rem] font-extrabold leading-[1.02] tracking-tight text-[#15111F] sm:text-6xl md:text-[4.2rem]">
+            Premium AI Tools<br />at <span style={{ color: "#F3A620" }}>Unbeatable Prices</span>
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+            ChatGPT, Claude, Gemini, Canva, CapCut, Adobe, Microsoft, VPNs and 349 premium digital tools — in PKR, with Safepay, JazzCash, Easypaisa and Raast.
+          </p>
+          <form onSubmit={go} className="mt-8 flex max-w-xl items-center gap-3 rounded-full border border-[#FFB466] bg-white p-2 pl-6 shadow-[0_12px_32px_rgba(101,80,45,.10)]">
+            <Icon name="search" className="text-muted" />
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search premium tools" className="w-full bg-transparent py-3 text-base outline-none placeholder:text-[#857D8E]" aria-label="Search premium tools" />
+            <button className="btn-primary !px-7">Search</button>
+          </form>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {BENEFITS.map(([a, b]) => (
+              <div key={b} className="rounded-2xl border border-[rgba(112,97,72,.10)] bg-white/80 px-4 py-3 shadow-[0_6px_18px_rgba(48,32,67,.04)]">
+                <p className="text-sm font-bold text-[#26202E]">{a} <span className="text-[#AD5A00]">{b}</span></p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-sm text-muted">Trusted by 2,800+ creators &amp; pros · Prices in PKR · 10% off your first order with WELCOME10</p>
+          <div className="mt-4">
+            <Link href="/tools" className="btn-ghost">Explore all tools →</Link>
+          </div>
         </div>
-        <h1 className="mx-auto mt-7 max-w-4xl text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
-          Buy AI tools &amp; digital subscriptions <span className="shimmer-text">online in Pakistan</span>
-        </h1>
-        <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted">
-          ChatGPT, Gemini, Canva, CapCut, Adobe, Figma, Spotify and 80+ premium tools — pay in PKR with Safepay, JazzCash, Easypaisa or Raast, and get instant access in under 60 seconds.
-        </p>
-        <form onSubmit={go} className="glass mx-auto mt-10 flex max-w-2xl items-center gap-3 rounded-full p-2 pl-6 shadow-2xl shadow-violet-brand/10 focus-within:border-violet-brand">
-          <Icon name="search" className="text-muted" />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search tools: ChatGPT, Canva, Gemini, CapCut..." className="w-full bg-transparent py-3 text-base outline-none placeholder:text-[#9CA3AF]" />
-          <button className="btn-primary !px-7">Search</button>
-        </form>
-        <p className="mt-7 text-sm text-muted">Trusted by 2,800+ creators &amp; pros · Prices in PKR · 10% off your first order with WELCOME10</p>
+        <div className="relative">
+          <img src="/images/hero-ai-marketplace.webp" alt="Nexavo AI marketplace — premium AI tools" className="w-full rounded-[24px] shadow-[0_18px_32px_rgba(87,70,42,.12)]" style={{ filter: "drop-shadow(0 18px 32px rgba(87,70,42,.12))" }} />
+          <div className="absolute bottom-4 right-4 rounded-2xl border border-[#EDE9E0] bg-white px-4 py-3 shadow-lg">
+            <p className="text-sm font-bold text-[#3B3345]">349 tools in stock</p>
+            <p className="text-xs text-muted">Instant delivery after payment</p>
+          </div>
+          {tools[0] && (
+            <div className="absolute -left-3 top-6 hidden items-center gap-3 rounded-2xl border border-line bg-white p-3 pr-5 shadow-xl lg:flex">
+              <ToolTile tool={tools[0]} size={44} />
+              <div><p className="text-sm font-semibold">{tools[0].name}</p><p className="text-xs text-muted">{formatPKR(tools[0].price)}</p></div>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

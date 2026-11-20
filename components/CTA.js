@@ -12,7 +12,7 @@ export default function CTA() {
           <svg className="absolute right-4 top-4 h-40 w-40 animate-spin-slow opacity-30" viewBox="0 0 100 100" fill="none" stroke="#fff"><circle cx="50" cy="50" r="46" strokeDasharray="3 6" /><circle cx="50" cy="50" r="30" strokeDasharray="2 5" /></svg>
           <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <h2 className="max-w-md text-3xl font-bold sm:text-[32px]">Ready to power up your workflow?</h2>
-            <Link href="/register" className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-[#4C2FD6] shadow-xl transition hover:scale-105">Start free today <Icon name="arrow" size={18} /></Link>
+            <Link href="/register" className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-[#755938] shadow-xl transition hover:scale-105">Start free today <Icon name="arrow" size={18} /></Link>
           </div>
         </div>
       </Reveal>

@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import NewsletterForm from "./NewsletterForm";
+import { whatsappUrl, whatsappDisplay } from "@/lib/site";
 
 const cols = [
+  ["Shop", [["ChatGPT", "/tools?q=ChatGPT"], ["Google Gemini", "/tools?q=Gemini"], ["Canva", "/tools?q=Canva"], ["CapCut", "/tools?q=CapCut"], ["Adobe", "/tools?q=Adobe"], ["All tools", "/tools"]]],
   ["Product", [["All tools", "/tools"], ["Pricing", "/pricing"], ["Cart", "/cart"], ["Dashboard", "/dashboard"]]],
   ["Company", [["About", "/about"], ["Blog", "/blog"], ["Contact", "/contact"], ["Support", "/contact"]]],
   ["Legal", [["Privacy", "/privacy"], ["Terms", "/terms"]]],
@@ -15,6 +17,8 @@ export default function Footer() {
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">Discover, compare and buy premium AI tools and digital subscriptions in PKR — ChatGPT, Gemini, Canva, CapCut, Adobe, Figma, Spotify and more, with instant delivery in Pakistan.</p>
+          <p className="mt-4 text-sm">Chat on WhatsApp: <a href={whatsappUrl()} target="_blank" rel="noreferrer" className="font-bold text-[#128C7E] hover:underline">WhatsApp {whatsappDisplay()}</a></p>
+          <p className="mt-2 text-sm text-muted">Pay with Safepay — card, JazzCash, Easypaisa, Raast.</p>
           <NewsletterForm />
         </div>
         {cols.map(([t, ls]) => (
