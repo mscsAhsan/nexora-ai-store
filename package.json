@@ -1,5 +1,5 @@
 {
-  "name": "nexora-ai-store",
+  "name": "nexavo-ai-store",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
+    "@sfpy/node-core": "^0.3.7",
     "bcryptjs": "^2.4.3",
     "jose": "^5.9.6",
     "next": "14.2.15",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "resend": "^6.38.1"
   },
   "devDependencies": {
     "autoprefixer": "10.4.20",

@@ -4,7 +4,7 @@ import PageHeader from "@/components/PageHeader";
 import { posts } from "@/lib/blog";
 
 export function generateStaticParams() { return posts.map((p) => ({ slug: p.slug })); }
-export function generateMetadata({ params }) { const p = posts.find((x) => x.slug === params.slug); return { title: p ? `${p.title} - Nexora AI` : "Not found" }; }
+export function generateMetadata({ params }) { const p = posts.find((x) => x.slug === params.slug); return { title: p ? `${p.title} - Nexavo AI` : "Not found" }; }
 
 export default function Post({ params }) {
   const p = posts.find((x) => x.slug === params.slug);

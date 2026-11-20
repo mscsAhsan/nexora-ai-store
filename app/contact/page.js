@@ -1,7 +1,7 @@
 import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
 
-export const metadata = { title: "Contact & Support - Nexora AI" };
+export const metadata = { title: "Contact & Support - Nexavo AI" };
 
 const faqs = [
   ["How do I get my tool after paying?", "Open your Dashboard. Your license key and access link appear as soon as the order is paid."],

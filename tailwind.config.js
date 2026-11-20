@@ -4,20 +4,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        midnight: "#0B1020",
-        card: "#141B34",
-        line: "#252E52",
-        violet: { brand: "#7C5CFF" },
-        cyan: { brand: "#22D3EE" },
-        pink: { brand: "#F472B6" },
-        muted: "#9AA6C8",
+        midnight: "#FAF7F0",
+        card: "#FFFFFF",
+        line: "#E7DFD0",
+        violet: { brand: "#0E7A5F" },
+        emerald: { brand: "#0E7A5F" },
+        cyan: { brand: "#0F766E" },
+        pink: { brand: "#F59E0B" },
+        muted: "#64748B",
+        ink: "#1F2937",
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"],
       },
       backgroundImage: {
-        "brand-gradient": "linear-gradient(135deg,#7C5CFF 0%,#22D3EE 100%)",
-        "cta-gradient": "linear-gradient(135deg,#7C5CFF 0%,#F472B6 100%)",
+        "brand-gradient": "linear-gradient(135deg,#0E7A5F 0%,#0F766E 100%)",
+        "cta-gradient": "linear-gradient(135deg,#0E7A5F 0%,#F59E0B 100%)",
       },
       keyframes: {
         float: { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-18px)" } },

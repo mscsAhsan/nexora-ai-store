@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 html { scroll-behavior: smooth; }
-body { background: #0B1020; color: #F1F5FF; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-::selection { background: #7C5CFF; color: #fff; }
+body { background: #FAF7F0; color: #1F2937; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+::selection { background: #0E7A5F; color: #fff; }
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #0B1020; }
-::-webkit-scrollbar-thumb { background: #252E52; border-radius: 10px; }
+::-webkit-scrollbar-track { background: #FAF7F0; }
+::-webkit-scrollbar-thumb { background: #D6CDB8; border-radius: 10px; }
 
 @layer components {
-  .glass { @apply bg-card/70 backdrop-blur-xl border border-line; }
+  .glass { @apply bg-white/80 backdrop-blur-xl border border-line shadow-sm; }
   .gradient-text { @apply bg-clip-text text-transparent bg-brand-gradient; }
-  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-semibold text-white shadow-lg shadow-violet-brand/30 transition hover:scale-[1.04] hover:shadow-violet-brand/50 active:scale-95; }
-  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-[#1A2342] px-6 py-3 font-semibold text-white transition hover:border-violet-brand hover:bg-[#222c55]; }
-  .input { @apply w-full rounded-xl border border-line bg-midnight/60 px-4 py-3 text-[15px] outline-none transition placeholder:text-[#6B779E] focus:border-violet-brand; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-900/20 transition hover:scale-[1.04] hover:shadow-emerald-900/30 active:scale-95; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-6 py-3 font-semibold text-[#1F2937] transition hover:border-violet-brand hover:bg-emerald-50; }
+  .input { @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-[#1F2937] outline-none transition placeholder:text-[#9CA3AF] focus:border-violet-brand; }
   .label { @apply mb-1.5 block text-sm font-medium text-muted; }
   .section { @apply mx-auto w-full max-w-6xl px-5; }
 }
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(124,92,255,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124,92,255,.08) 1px, transparent 1px);
+    linear-gradient(rgba(14,122,95,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14,122,95,.07) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
@@ -32,16 +32,25 @@ body { background: #0B1020; color: #F1F5FF; -webkit-font-smoothing: antialiased;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
 }
 .shimmer-text {
-  background: linear-gradient(90deg,#22D3EE,#7C5CFF,#F472B6,#22D3EE);
+  background: linear-gradient(90deg,#0F766E,#0E7A5F,#F59E0B,#0F766E);
   background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
   animation: shimmer 6s linear infinite;
 }
 .border-glow { position: relative; }
 .border-glow::before {
   content: ""; position: absolute; inset: -1.5px; border-radius: inherit; z-index: -1;
-  background: linear-gradient(135deg,#7C5CFF,#22D3EE,#F472B6); opacity: .0; transition: opacity .3s;
+  background: linear-gradient(135deg,#0E7A5F,#0F766E,#F59E0B); opacity: .0; transition: opacity .3s;
 }
 .border-glow:hover::before { opacity: 1; }
 
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
 .reveal.show { opacity: 1; transform: none; }
+
+/* Page transition (PageTransition.js) */
+@keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.page-transition { animation: pageIn .32s ease both; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.chat-panel { animation: slideUp .22s ease both; }
+@keyframes typingDot { 0%,60%,100% { transform: translateY(0); opacity:.4; } 30% { transform: translateY(-4px); opacity:1; } }
+.typing-dot { animation: typingDot 1s ease-in-out infinite; }
+@keyframes topbar { from { width: 0; } to { width: 100%; } }

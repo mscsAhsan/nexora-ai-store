@@ -1,10 +1,10 @@
 import PageHeader from "@/components/PageHeader";
 
-export const metadata = { title: "Terms of Service - Nexora AI" };
+export const metadata = { title: "Terms of Service - Nexavo AI" };
 
 const sections = [
-  ["Using the service", "By creating an account you agree to use Nexora AI lawfully and not to share or resell your license keys."],
-  ["Payments", "Prices are shown in USD. An order is completed once payment is confirmed. Manual payments are confirmed by our team."],
+  ["Using the service", "By creating an account you agree to use Nexavo AI lawfully and not to share or resell your license keys."],
+  ["Payments", "Prices are shown in Pakistani rupees (PKR). An order is completed once payment is confirmed via Safepay. Manual payments are confirmed by our team."],
   ["Refunds", "If a tool does not work as described, contact support within 7 days."],
   ["Changes", "We may update these terms; continued use means you accept the changes."],
 ];

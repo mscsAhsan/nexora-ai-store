@@ -1,7 +1,7 @@
 @echo off
-title Nexora AI - Setup
+title Nexavo AI - Setup
 echo ==========================================
-echo   Nexora AI Store - Auto Setup
+echo   Nexavo AI Store - Auto Setup
 echo ==========================================
 where node >nul 2>nul
 if %errorlevel% neq 0 (

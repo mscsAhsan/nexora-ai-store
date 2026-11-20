@@ -5,7 +5,7 @@ import { Icon } from "@/components/Icons";
 import { getTools } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "All AI tools - Nexora AI" };
+export const metadata = { title: "All AI tools - Nexavo AI" };
 
 export default async function ToolsPage({ searchParams }) {
   const q = searchParams.q || "";
@@ -16,7 +16,7 @@ export default async function ToolsPage({ searchParams }) {
       <PageHeader title="Browse AI tools" subtitle="Find the right tool for writing, design, video, code and more.">
         <form action="/tools" className="glass mx-auto mt-8 flex max-w-xl items-center gap-3 rounded-full p-2 pl-5">
           <Icon name="search" className="text-muted" />
-          <input name="q" defaultValue={q} placeholder="Search tools..." className="w-full bg-transparent py-2.5 outline-none placeholder:text-[#6B779E]" />
+          <input name="q" defaultValue={q} placeholder="Search tools..." className="w-full bg-transparent py-2.5 outline-none placeholder:text-[#9CA3AF]" />
           {category !== "All" && <input type="hidden" name="category" value={category} />}
           <button className="btn-primary !px-6 !py-2.5 text-sm">Search</button>
         </form>

@@ -1,6 +1,6 @@
 import PageHeader from "@/components/PageHeader";
 
-export const metadata = { title: "Privacy Policy - Nexora AI" };
+export const metadata = { title: "Privacy Policy - Nexavo AI" };
 
 const sections = [
   ["Information we collect", "We collect your name, email address and order history when you create an account or make a purchase. We never store full card numbers."],

@@ -3,7 +3,7 @@ import AuthForm from "@/components/AuthForm";
 import { getUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-export const metadata = { title: "Sign in - Nexora AI" };
+export const metadata = { title: "Sign in - Nexavo AI" };
 
 export default async function Login({ searchParams }) {
   if (await getUser()) redirect("/dashboard");

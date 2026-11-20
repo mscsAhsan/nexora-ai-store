@@ -3,12 +3,14 @@ import { CartProvider } from "@/components/CartContext";
 import Navbar from "@/components/Navbar";
 import CartDrawer from "@/components/CartDrawer";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
+import Chatbot from "@/components/Chatbot";
 import { getUser } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "Nexora AI - Find & buy the best AI tools",
-  description: "Compare, try and purchase top AI tools for writing, design, video and coding.",
+  title: "Nexavo AI - Buy AI tools & digital subscriptions in Pakistan",
+  description: "ChatGPT, Gemini, Canva, CapCut, Adobe, Figma, Spotify and 80+ premium subscriptions in PKR. Pay with Safepay, JazzCash, Easypaisa or Raast. Instant delivery in Pakistan.",
 };
 
 export default async function RootLayout({ children }) {
@@ -19,8 +21,11 @@ export default async function RootLayout({ children }) {
         <CartProvider>
           <Navbar user={user} />
           <CartDrawer />
-          <main>{children}</main>
+          <PageTransition>
+            <main>{children}</main>
+          </PageTransition>
           <Footer />
+          <Chatbot />
         </CartProvider>
       </body>
     </html>

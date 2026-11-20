@@ -1,7 +1,7 @@
 import PageHeader from "@/components/PageHeader";
 import Pricing from "@/components/Pricing";
 
-export const metadata = { title: "Pricing - Nexora AI" };
+export const metadata = { title: "Pricing - Nexavo AI" };
 
 const faqs = [
   ["Can I cancel anytime?", "Yes. Plans are billed per month and you can stop whenever you like."],
