@@ -1,5 +1,6 @@
 import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
+import { whatsappUrl, whatsappDisplay } from "@/lib/site";
 
 export const metadata = { title: "Contact & Support - Nexavo AI" };
 
@@ -21,6 +22,7 @@ export default function Contact() {
             {faqs.map(([q, a]) => <details key={q} className="glass rounded-2xl p-5"><summary className="cursor-pointer list-none font-semibold">{q}</summary><p className="mt-3 text-muted">{a}</p></details>)}
           </div>
           <p className="mt-6 text-sm text-muted">Email: {process.env.SUPPORT_EMAIL || "support@yourdomain.com"}</p>
+          <p className="mt-3 text-sm">Fastest reply on WhatsApp: <a href={whatsappUrl()} target="_blank" rel="noreferrer" className="font-bold text-[#128C7E] hover:underline">{whatsappDisplay()}</a></p>
         </div>
       </section>
     </>

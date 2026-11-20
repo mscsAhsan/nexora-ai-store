@@ -11,7 +11,7 @@ export default function Blog() {
       <section className="section grid gap-6 pt-10 md:grid-cols-3">
         {posts.map((p, i) => (
           <Link key={p.slug} href={`/blog/${p.slug}`} className="group overflow-hidden rounded-3xl border border-line bg-card transition hover:-translate-y-2 hover:border-violet-brand">
-            <div className="h-40" style={{ background: `linear-gradient(135deg, ${["#0E7A5F,#0F766E", "#F59E0B,#0E7A5F", "#0F766E,#34D399"][i % 3]})` }} />
+            <div className="h-40" style={{ background: `linear-gradient(135deg, ${["#F3A620,#0EA5E9", "#F3A620,#F3A620", "#0EA5E9,#34D399"][i % 3]})` }} />
             <div className="p-6">
               <p className="text-xs text-muted">{p.date} &middot; {p.read}</p>
               <h3 className="mt-2 text-xl font-bold group-hover:text-cyan-brand">{p.title}</h3>

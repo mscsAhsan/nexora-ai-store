@@ -3,26 +3,29 @@
 @tailwind utilities;
 
 html { scroll-behavior: smooth; }
-body { background: #FAF7F0; color: #1F2937; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-::selection { background: #0E7A5F; color: #fff; }
+body { background: #FBF9F5; color: #282330; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+::selection { background: #F3A620; color: #fff; }
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #FAF7F0; }
-::-webkit-scrollbar-thumb { background: #D6CDB8; border-radius: 10px; }
+::-webkit-scrollbar-track { background: #FBF9F5; }
+::-webkit-scrollbar-thumb { background: #E9E2D5; border-radius: 10px; }
 
 @layer components {
-  .glass { @apply bg-white/80 backdrop-blur-xl border border-line shadow-sm; }
+  .glass { @apply bg-white border border-line; box-shadow: 0 2px 8px rgba(40,25,65,.035); }
   .gradient-text { @apply bg-clip-text text-transparent bg-brand-gradient; }
-  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-900/20 transition hover:scale-[1.04] hover:shadow-emerald-900/30 active:scale-95; }
-  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-6 py-3 font-semibold text-[#1F2937] transition hover:border-violet-brand hover:bg-emerald-50; }
-  .input { @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-[#1F2937] outline-none transition placeholder:text-[#9CA3AF] focus:border-violet-brand; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold text-white transition active:scale-95; background: #F3A620; box-shadow: 0 2px 4px rgba(140,101,33,.12); }
+  .btn-primary:hover { background: #DE910C; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-xl border bg-transparent px-6 py-3 font-semibold transition; border-color: rgba(86,71,45,.2); color: #755938; }
+  .btn-ghost:hover { background: #FCF7EC; }
+  .input { @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-[#282330] outline-none transition placeholder:text-[#6F6878] focus:border-violet-brand; }
   .label { @apply mb-1.5 block text-sm font-medium text-muted; }
-  .section { @apply mx-auto w-full max-w-6xl px-5; }
+  .section { @apply mx-auto w-full max-w-[1384px] px-5; }
+  h1, h2, h3 { font-family: "Inter Tight", Inter, Manrope, ui-sans-serif, system-ui, sans-serif; letter-spacing: -.02em; }
 }
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(14,122,95,.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14,122,95,.07) 1px, transparent 1px);
+    linear-gradient(rgba(243,166,32,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(243,166,32,.07) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
@@ -32,14 +35,14 @@ body { background: #FAF7F0; color: #1F2937; -webkit-font-smoothing: antialiased;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
 }
 .shimmer-text {
-  background: linear-gradient(90deg,#0F766E,#0E7A5F,#F59E0B,#0F766E);
+  background: linear-gradient(90deg,#F3A620,#DE910C,#DB2777,#F3A620);
   background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
   animation: shimmer 6s linear infinite;
 }
 .border-glow { position: relative; }
 .border-glow::before {
   content: ""; position: absolute; inset: -1.5px; border-radius: inherit; z-index: -1;
-  background: linear-gradient(135deg,#0E7A5F,#0F766E,#F59E0B); opacity: .0; transition: opacity .3s;
+  background: linear-gradient(135deg,#F3A620,#F4AD33,#DB2777); opacity: .0; transition: opacity .3s;
 }
 .border-glow:hover::before { opacity: 1; }
 
@@ -54,3 +57,9 @@ body { background: #FAF7F0; color: #1F2937; -webkit-font-smoothing: antialiased;
 @keyframes typingDot { 0%,60%,100% { transform: translateY(0); opacity:.4; } 30% { transform: translateY(-4px); opacity:1; } }
 .typing-dot { animation: typingDot 1s ease-in-out infinite; }
 @keyframes topbar { from { width: 0; } to { width: 100%; } }
+
+@font-face { font-family: Manrope; src: url("/fonts/manrope-latin-variable.woff") format("woff"); font-weight: 400 800; font-style: normal; font-display: swap; }
+/* Sample clay card: white, 20-24px radius, soft shadow, warm border */
+.clay { background: #fff; border: 1px solid rgba(86,71,45,.14); border-radius: 20px; box-shadow: 0 2px 8px rgba(40,25,65,.035); }
+.clay:hover { box-shadow: 0 12px 32px rgba(40,25,65,.075); }
+.eyebrow { display: inline-flex; align-items: center; gap: .5rem; background: #FFF8EF; color: #AD5A00; border: 1px solid #FFD5A8; border-radius: 999px; padding: .4rem .9rem; font-size: .78rem; font-weight: 700; letter-spacing: .05em; }
