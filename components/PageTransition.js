@@ -19,7 +19,7 @@ export default function PageTransition({ children }) {
   return (
     <>
       <div
-        className={`fixed left-0 top-0 z-[60] h-[3px] bg-gradient-to-r from-[#F3A620] via-[#0EA5E9] to-[#F3A620] transition-all duration-300 ${bar ? "w-full opacity-100" : "w-0 opacity-0"}`}
+        className={`fixed left-0 top-0 z-[95] h-[3px] bg-gradient-to-r from-[#F3A620] via-[#0EA5E9] to-[#F3A620] transition-all duration-300 ${bar ? "w-full opacity-100" : "w-0 opacity-0"}`}
         aria-hidden
       />
       <div key={pathname} className="page-transition">

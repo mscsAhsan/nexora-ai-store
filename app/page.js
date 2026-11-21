@@ -73,8 +73,8 @@ const FAQ = [
 function SectionHead({ title, sub, link }) {
   return (
     <Reveal>
-      <div className="mb-8 flex items-end justify-between gap-4">
-        <div><h2 className="text-3xl font-bold sm:text-4xl">{title}</h2>{sub && <p className="mt-1.5 text-muted">{sub}</p>}</div>
+      <div className="mb-5 flex items-end justify-between gap-4 sm:mb-8">
+        <div><h2 className="text-[1.65rem] font-bold leading-tight sm:text-4xl">{title}</h2>{sub && <p className="mt-1.5 text-muted">{sub}</p>}</div>
         {link && <Link href="/tools" className="shrink-0 text-[15px] font-bold text-[#AD5A00] hover:underline">View all &gt;</Link>}
       </div>
     </Reveal>
@@ -90,14 +90,14 @@ export default async function Home() {
       <Marquee />
 
       {/* Find the Right Tool Faster — sample brand grid with sample counts */}
-      <section className="section pt-16">
+      <section className="section pt-10 sm:pt-16">
         <Reveal>
-          <h2 className="text-center text-3xl font-bold sm:text-4xl">Find the Right Tool Faster.</h2>
-          <p className="mx-auto mt-2 max-w-xl text-center text-muted">Browse by brand — the sample&apos;s full-site counts are shown; this list holds all 349 homepage products.</p>
+          <h2 className="text-center text-[1.65rem] font-bold leading-tight sm:text-4xl">Find the Right Tool Faster.</h2>
+          <p className="mx-auto mt-2 max-w-xl text-center text-muted">Browse by brand — 349 premium tools in stock, all in PKR.</p>
         </Reveal>
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="hide-scrollbar -mx-4 mt-6 flex snap-x gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:mt-8 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:px-0 lg:grid-cols-5">
           {BRANDS.map(([b, n]) => (
-            <Link key={b} href={`/tools?q=${encodeURIComponent(b)}`} className="clay group p-5 transition hover:-translate-y-1">
+            <Link key={b} href={`/tools?q=${encodeURIComponent(b)}`} className="clay group min-w-[150px] shrink-0 snap-start p-4 transition hover:-translate-y-1 sm:min-w-0 sm:p-5">
               <p className="font-bold group-hover:text-[#AD5A00]">{b}</p>
               <p className="mt-1 text-sm text-muted">{n} products</p>
               <p className="mt-2 text-sm font-semibold text-[#AD5A00]">Browse →</p>
@@ -107,21 +107,21 @@ export default async function Home() {
       </section>
 
       {/* Subscriptions available right now */}
-      <section id="tools" className="section scroll-mt-24 pt-16">
+      <section id="tools" className="section scroll-mt-24 pt-10 sm:pt-16">
         <SectionHead title="Subscriptions available right now." sub="In stock — instant delivery after payment" link />
         <ToolGrid tools={tools.slice(0, 12)} />
       </section>
 
       {/* How It Works in 4 Simple Steps */}
-      <section className="section pt-20">
+      <section className="section pt-12 sm:pt-20">
         <Reveal>
-          <h2 className="text-center text-3xl font-bold sm:text-4xl">How It Works in 4 Simple Steps</h2>
+          <h2 className="text-center text-[1.65rem] font-bold leading-tight sm:text-4xl">How It Works in 4 Simple Steps</h2>
           <p className="mx-auto mt-2 max-w-xl text-center text-muted">Get access to world-class AI models and premium creative tools in under 60 seconds.</p>
         </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {STEPS.map(([n, t, d], i) => (
             <Reveal key={n} delay={i * 90}>
-              <div className="clay h-full p-6">
+              <div className="clay h-full p-5 sm:p-6">
                 <p className="text-3xl font-extrabold text-[#F3A620]">{n}</p>
                 <h3 className="mt-3 text-lg font-bold">{t}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{d}</p>
@@ -132,13 +132,13 @@ export default async function Home() {
       </section>
 
       {/* Trusted by 2,800+ Creators & Pros + WELCOME10 */}
-      <section className="section pt-20">
-        <Reveal><h2 className="text-center text-3xl font-bold sm:text-4xl">Trusted by 2,800+ Creators &amp; Pros</h2></Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+      <section className="section pt-12 sm:pt-20">
+        <Reveal><h2 className="text-center text-[1.65rem] font-bold leading-tight sm:text-4xl">Trusted by 2,800+ Creators &amp; Pros</h2></Reveal>
+        <div className="hide-scrollbar -mx-4 mt-6 flex snap-x gap-3 overflow-x-auto px-4 pb-3 sm:mt-10 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
           {TESTIMONIALS.map(([q, name, role]) => (
-            <Reveal key={name}>
-              <div className="clay h-full p-6">
-                <p className="text-lg leading-relaxed">“{q}”</p>
+            <Reveal key={name} className="min-w-[85%] shrink-0 snap-start md:min-w-0">
+              <div className="clay h-full p-5 sm:p-6">
+                <p className="text-base leading-relaxed sm:text-lg">“{q}”</p>
                 <p className="mt-4 font-bold">{name}</p>
                 <p className="text-sm text-muted">{role}</p>
               </div>
@@ -146,7 +146,7 @@ export default async function Home() {
           ))}
         </div>
         <Reveal>
-          <div className="mt-10 rounded-[24px] p-8 text-center text-white shadow-lg" style={{ background: "linear-gradient(135deg,#F3A620,#DB2777)" }}>
+          <div className="mt-6 rounded-[20px] p-6 text-center text-white shadow-lg sm:mt-10 sm:rounded-[24px] sm:p-8" style={{ background: "linear-gradient(135deg,#F3A620,#DB2777)" }}>
             <h3 className="text-2xl font-bold">Get 10% Off Your First AI Tool</h3>
             <p className="mt-2 opacity-90">Use code <b className="rounded-lg bg-white/20 px-3 py-1">WELCOME10</b> at checkout. Join 15,000+ digital professionals receiving weekly AI discounts &amp; stock alerts.</p>
           </div>
@@ -154,7 +154,7 @@ export default async function Home() {
       </section>
 
       {/* Featured this week */}
-      <section className="section pt-20">
+      <section className="section pt-12 sm:pt-20">
         <SectionHead title="Featured this week." sub="Highest-rated plans, tested before delivery" link />
         <ToolGrid tools={featured.length ? featured : tools.slice(0, 6)} />
       </section>
@@ -162,12 +162,12 @@ export default async function Home() {
       <Stats />
 
       {/* Tested before delivery to your panel */}
-      <section className="section pt-20">
+      <section className="section pt-12 sm:pt-20">
         <div className="grid gap-10 lg:grid-cols-2">
           <Reveal>
-            <h2 className="text-3xl font-bold sm:text-4xl">Tested before delivery to your panel.</h2>
+            <h2 className="text-[1.65rem] font-bold leading-tight sm:text-4xl">Tested before delivery to your panel.</h2>
             <p className="mt-3 leading-relaxed text-muted">Every order is guaranteed with the checks below — read the listing before you pay, and your delivery details stay attached to the order in your panel.</p>
-            <Link href="/tools" className="btn-primary mt-6">Browse all tools</Link>
+            <Link href="/tools" className="btn-primary mt-5 w-full sm:mt-6 sm:w-auto">Browse all tools</Link>
           </Reveal>
           <div className="space-y-3">
             {TESTED.map((x) => (
@@ -178,15 +178,15 @@ export default async function Home() {
       </section>
 
       {/* Instant Access to Your Tools in Four Simple Steps */}
-      <section className="section pt-20">
+      <section className="section pt-12 sm:pt-20">
         <Reveal>
-          <h2 className="text-center text-3xl font-bold sm:text-4xl">Instant Access to Your Tools in Four Simple Steps.</h2>
+          <h2 className="text-center text-[1.65rem] font-bold leading-tight sm:text-4xl">Instant Access to Your Tools in Four Simple Steps.</h2>
           <p className="mx-auto mt-2 max-w-xl text-center text-muted">Instant-delivery products arrive in your panel right after payment. Products that need manual review say so on the listing.</p>
         </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {INSTANT_STEPS.map(([n, t, d], i) => (
             <Reveal key={n} delay={i * 90}>
-              <div className="clay h-full p-6">
+              <div className="clay h-full p-5 sm:p-6">
                 <p className="text-3xl font-extrabold text-[#F3A620]">{n}</p>
                 <h3 className="mt-3 text-lg font-bold">{t}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{d}</p>
@@ -197,28 +197,28 @@ export default async function Home() {
       </section>
 
       {/* What actually sets our reseller rates */}
-      <section className="section pt-20">
+      <section className="section pt-12 sm:pt-20">
         <Reveal>
-          <h2 className="text-center text-3xl font-bold sm:text-4xl">What actually sets our reseller rates.</h2>
+          <h2 className="text-center text-[1.65rem] font-bold leading-tight sm:text-4xl">What actually sets our reseller rates.</h2>
           <p className="mx-auto mt-2 max-w-xl text-center text-muted">Direct supplier integration and volume licensing enable enterprise rates without the retail markup.</p>
         </Reveal>
-        <div className="mx-auto mt-10 grid max-w-4xl gap-4 md:grid-cols-2">
+        <div className="mx-auto mt-6 grid max-w-4xl gap-3 sm:mt-10 sm:gap-4 md:grid-cols-2">
           {RATES.map(([t, d]) => (
-            <Reveal key={t}><div className="clay h-full p-6"><h3 className="font-bold">{t}</h3><p className="mt-2 text-sm leading-relaxed text-muted">{d}</p></div></Reveal>
+            <Reveal key={t}><div className="clay h-full p-5 sm:p-6"><h3 className="font-bold">{t}</h3><p className="mt-2 text-sm leading-relaxed text-muted">{d}</p></div></Reveal>
           ))}
         </div>
       </section>
 
       {/* How to choose an AI tool plan */}
-      <section className="section pt-20">
+      <section className="section pt-12 sm:pt-20">
         <Reveal>
-          <h2 className="text-center text-3xl font-bold sm:text-4xl">How to choose an AI tool plan that fits how you work.</h2>
+          <h2 className="text-center text-[1.65rem] font-bold leading-tight sm:text-4xl">How to choose an AI tool plan that fits how you work.</h2>
           <p className="mx-auto mt-2 max-w-xl text-center text-muted">Four checks before you buy, and a quick guide to which tool suits which job.</p>
         </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-6 md:grid-cols-2">
           {CHOOSE.map(([n, t, d]) => (
             <Reveal key={n}>
-              <div className="clay h-full p-6">
+              <div className="clay h-full p-5 sm:p-6">
                 <p className="text-2xl font-extrabold text-[#F3A620]">{n}</p>
                 <h3 className="mt-2 text-lg font-bold">{t}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{d}</p>
@@ -236,12 +236,12 @@ export default async function Home() {
       </section>
 
       {/* Questions Buyers Ask Us First */}
-      <section className="section pt-20">
-        <Reveal><h2 className="text-center text-3xl font-bold sm:text-4xl">Questions Buyers Ask Us First.</h2></Reveal>
-        <div className="mx-auto mt-10 max-w-3xl space-y-4">
+      <section className="section pt-12 sm:pt-20">
+        <Reveal><h2 className="text-center text-[1.65rem] font-bold leading-tight sm:text-4xl">Questions Buyers Ask Us First.</h2></Reveal>
+        <div className="mx-auto mt-6 max-w-3xl space-y-3 sm:mt-10 sm:space-y-4">
           {FAQ.map(([q, a]) => (
             <Reveal key={q}>
-              <details className="clay group p-6">
+              <details className="clay group p-4 sm:p-6">
                 <summary className="cursor-pointer list-none font-bold">{q}<span className="float-right text-[#F3A620] transition group-open:rotate-45">+</span></summary>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{a}</p>
               </details>
@@ -251,12 +251,12 @@ export default async function Home() {
       </section>
 
       {/* Know the plan before you pay */}
-      <section className="section pt-20">
+      <section className="section pt-12 sm:pt-20">
         <Reveal>
-          <div className="clay p-8 text-center sm:p-12">
-            <h2 className="text-3xl font-bold sm:text-4xl">Know the plan before you pay. Then order the one that fits.</h2>
+          <div className="clay p-6 text-center sm:p-12">
+            <h2 className="text-[1.65rem] font-bold leading-tight sm:text-4xl">Know the plan before you pay. Then order the one that fits.</h2>
             <p className="mx-auto mt-3 max-w-xl text-muted">Browse the live catalog, compare the access type and term, and check the delivery and warranty notes on the product page before you place the order.</p>
-            <Link href="/tools" className="btn-primary mt-6">Browse the live catalog</Link>
+            <Link href="/tools" className="btn-primary mt-5 w-full sm:mt-6 sm:w-auto">Browse the live catalog</Link>
           </div>
         </Reveal>
       </section>

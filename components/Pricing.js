@@ -9,12 +9,12 @@ import Reveal from "./Reveal";
 export default function Pricing({ heading = true }) {
   const [yearly, setYearly] = useState(false);
   return (
-    <section id="pricing" className="section scroll-mt-24 pt-20">
+    <section id="pricing" className="section scroll-mt-24 pt-12 sm:pt-20">
       {heading && (
         <Reveal>
           <div className="text-center">
-            <h2 className="text-4xl font-bold sm:text-[40px]">Simple, transparent pricing</h2>
-            <p className="mt-3 text-lg text-muted">Pick a plan, cancel anytime</p>
+            <h2 className="text-[1.65rem] font-bold leading-tight sm:text-[40px]">Simple, transparent pricing</h2>
+            <p className="mt-2 text-base text-muted sm:mt-3 sm:text-lg">Pick a plan, cancel anytime</p>
           </div>
         </Reveal>
       )}
@@ -26,16 +26,16 @@ export default function Pricing({ heading = true }) {
         </div>
         {yearly && <p className="mt-3 text-xs text-muted">Yearly price shown per month. Checkout currently bills the plan for one month.</p>}
       </div>
-      <div className="mt-10 grid items-center gap-6 md:grid-cols-3">
+      <div className="mt-8 grid items-center gap-5 sm:mt-10 sm:gap-6 md:grid-cols-3">
         {plans.map((p, i) => {
           const price = yearly ? Math.round(p.monthly * 0.8) : p.monthly;
           return (
             <Reveal key={p.name} delay={i * 100}>
               <div className={p.hot ? "rounded-[26px] bg-brand-gradient p-[2px] shadow-2xl shadow-violet-brand/30 md:scale-[1.04]" : ""}>
-                <div className={`relative rounded-3xl p-8 ${p.hot ? "bg-[#FFF8EF]" : "border border-line bg-card"}`}>
+                <div className={`relative rounded-3xl p-6 sm:p-8 ${p.hot ? "bg-[#FFF8EF]" : "border border-line bg-card"}`}>
                   {p.hot && <span className="absolute right-6 top-6 rounded-full bg-pink-brand px-3 py-1 text-[11px] font-bold tracking-wider">POPULAR</span>}
                   <h3 className="text-2xl font-bold">{p.name}</h3>
-                  <p className="mt-4"><span className="text-5xl font-extrabold">{formatPKR(price)}</span><span className="ml-1.5 text-muted">/month</span></p>
+                  <p className="mt-4"><span className="text-4xl font-extrabold sm:text-5xl">{formatPKR(price)}</span><span className="ml-1.5 text-muted">/month</span></p>
                   <p className="mt-1 text-sm text-muted">{p.desc}</p>
                   <ul className="my-7 space-y-3.5">
                     {p.features.map((f) => (

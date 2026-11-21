@@ -15,7 +15,7 @@ export default function OrdersTable({ orders }) {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search orders..." className="input !w-64 !py-2.5" />
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search orders..." className="input !w-full !py-2.5 sm:!w-64" />
         <select value={status} onChange={(e) => setStatus(e.target.value)} className="input !w-auto !py-2.5">
           <option value="all">All statuses</option><option value="paid">Paid</option><option value="pending">Pending</option><option value="cancelled">Cancelled</option>
         </select>

@@ -84,12 +84,12 @@ export default function Chatbot() {
   return (
     <>
       {!open && (
-        <button onClick={() => setOpen(true)} aria-label="Open chat" className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-[#F3A620] to-[#0EA5E9] text-2xl text-white shadow-xl shadow-amber-900/30 transition hover:scale-110 active:scale-95">
+        <button onClick={() => setOpen(true)} aria-label="Open chat" className="fixed bottom-[84px] right-4 z-30 grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-[#F3A620] to-[#0EA5E9] text-xl text-white shadow-xl shadow-amber-900/30 transition hover:scale-110 active:scale-95 md:bottom-5 md:right-5 md:h-14 md:w-14 md:text-2xl">
           💬
         </button>
       )}
       {open && (
-        <div className="chat-panel fixed bottom-5 right-5 z-50 flex h-[540px] w-[calc(100vw-2.5rem)] max-w-sm flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-2xl">
+        <div className="chat-panel fixed bottom-3 right-3 z-[80] flex h-[min(560px,calc(100dvh-1.5rem))] w-[calc(100vw-1.5rem)] max-w-sm flex-col overflow-hidden rounded-3xl border border-line bg-white shadow-2xl md:bottom-5 md:right-5 md:h-[540px]">
           <div className="flex items-center justify-between bg-gradient-to-r from-[#F3A620] to-[#0EA5E9] px-5 py-4 text-white">
             <div>
               <p className="font-bold">Nexavo Assistant</p>

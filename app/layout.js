@@ -6,9 +6,11 @@ import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import Chatbot from "@/components/Chatbot";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import { getUser } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
+export const viewport = { width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#F3A620" };
 export const metadata = {
   title: "Nexavo AI - Buy AI tools & digital subscriptions in Pakistan",
   description: "ChatGPT, Gemini, Canva, CapCut, Adobe, Figma, Spotify and 340+ premium subscriptions in PKR. Pay with Safepay, JazzCash, Easypaisa or Raast. Instant delivery in Pakistan.",
@@ -26,6 +28,8 @@ export default async function RootLayout({ children }) {
             <main>{children}</main>
           </PageTransition>
           <Footer />
+          <div className="h-[68px] md:hidden" aria-hidden />
+          <MobileBottomNav user={user} />
           <Chatbot />
           <WhatsAppButton />
         </CartProvider>

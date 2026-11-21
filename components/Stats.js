@@ -29,16 +29,16 @@ function Count({ to, suffix }) {
 
 export default function Stats() {
   return (
-    <section className="section pt-24">
+    <section className="section pt-12 sm:pt-24">
       <Reveal>
-        <div className="glass relative overflow-hidden rounded-3xl py-10">
+        <div className="glass relative overflow-hidden rounded-3xl py-7 sm:py-10">
           <div className="absolute -left-10 top-0 h-40 w-40 rounded-full bg-violet-brand/20 blur-3xl" />
           <div className="absolute -right-10 bottom-0 h-40 w-40 rounded-full bg-cyan-brand/20 blur-3xl" />
           <div className="relative grid grid-cols-2 gap-y-8 md:grid-cols-4">
             {data.map(([n, s, l], i) => (
               <div key={l} className="text-center">
-                <p className={`text-4xl font-extrabold sm:text-5xl ${i % 2 ? "text-violet-brand" : "text-cyan-brand"}`}><Count to={n} suffix={s} /></p>
-                <p className="mt-1 text-[15px] text-muted">{l}</p>
+                <p className={`text-3xl font-extrabold sm:text-5xl ${i % 2 ? "text-violet-brand" : "text-cyan-brand"}`}><Count to={n} suffix={s} /></p>
+                <p className="mt-1 px-2 text-[13px] text-muted sm:text-[15px]">{l}</p>
               </div>
             ))}
           </div>

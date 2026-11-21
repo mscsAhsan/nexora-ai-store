@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+@media (max-width: 767px) {
+  /* iOS zooms into inputs below 16px */
+  input, select, textarea { font-size: 16px !important; }
+  ::-webkit-scrollbar { width: 0; height: 0; }
+  .reveal { transform: translateY(16px); }
+}
 body { background: #FBF9F5; color: #282330; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 ::selection { background: #F3A620; color: #fff; }
 ::-webkit-scrollbar { width: 10px; }
@@ -18,7 +26,7 @@ body { background: #FBF9F5; color: #282330; -webkit-font-smoothing: antialiased;
   .btn-ghost:hover { background: #FCF7EC; }
   .input { @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] text-[#282330] outline-none transition placeholder:text-[#6F6878] focus:border-violet-brand; }
   .label { @apply mb-1.5 block text-sm font-medium text-muted; }
-  .section { @apply mx-auto w-full max-w-[1384px] px-5; }
+  .section { @apply mx-auto w-full max-w-[1384px] px-4 sm:px-5; }
   h1, h2, h3 { font-family: "Inter Tight", Inter, Manrope, ui-sans-serif, system-ui, sans-serif; letter-spacing: -.02em; }
 }
 
