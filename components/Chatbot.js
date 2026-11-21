@@ -58,12 +58,21 @@ export default function Chatbot() {
   const endRef = useRef(null);
 
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [msgs, busy, open]);
-  useEffect(() => {
-    try { const s = JSON.parse(localStorage.getItem("nexavo-chat") || "[]"); if (Array.isArray(s) && s.length) setMsgs(s); } catch {}
-  }, []);
-  useEffect(() => {
-    try { localStorage.setItem("nexavo-chat", JSON.stringify(msgs.slice(-30))); } catch {}
-  }, [msgs]);
+  // Tracks open/closed for in-flight replies (see send()).
+  const openRef = useRef(false);
+  useEffect(() => { openRef.current = open; }, [open]);
+
+  // Close (X button) resets the conversation: greeting only, default label,
+  // empty input. Nothing is cleared while the chat is open or on send —
+  // only on close. History is NOT persisted (no localStorage), so the next
+  // open always starts fresh.
+  function closeChat() {
+    setOpen(false);
+    setMsgs([{ role: "bot", text: FIRST }]);
+    setAi(null);
+    setInput("");
+    setBusy(false);
+  }
 
   async function send(text) {
     const q = (text ?? input).trim();
@@ -74,9 +83,12 @@ export default function Chatbot() {
     try {
       const r = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: q }) });
       const d = await r.json();
+      // If the user closed the chat while the reply was in flight, drop it.
+      if (!openRef.current) return;
       setAi(d.aiConnected === true ? "Cohere AI" : d.aiConnected === false ? "FAQ" : ai);
       setMsgs((m) => [...m, { role: "bot", text: d.reply || d.error || "Sorry, I could not answer that. Please try again or contact support at /contact." }]);
     } catch {
+      if (!openRef.current) return;
       setMsgs((m) => [...m, { role: "bot", text: "Sorry, the chat is unreachable right now. Please try again, or contact support at /contact." }]);
     } finally { setBusy(false); }
   }
@@ -95,7 +107,7 @@ export default function Chatbot() {
               <p className="font-bold">Nexavo Assistant</p>
               <p className="text-xs opacity-80">{ai ? `Answering with ${ai}` : "Ask about tools, prices, payment & delivery"}</p>
             </div>
-            <button onClick={() => setOpen(false)} aria-label="Close chat" className="rounded-full p-2 text-xl hover:bg-white/20">✕</button>
+            <button onClick={closeChat} aria-label="Close chat" className="rounded-full p-2 text-xl hover:bg-white/20">✕</button>
           </div>
           <div className="flex-1 space-y-3 overflow-y-auto bg-[#FBF9F5] p-4">
             {msgs.map((m, i) => (

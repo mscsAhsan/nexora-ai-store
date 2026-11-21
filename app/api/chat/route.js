@@ -33,6 +33,6 @@ export async function POST(req) {
     reply,
     source: "faq",
     aiConnected: false,
-    note: "AI chat is not connected yet — add COHERE_API_KEY in Vercel to enable live AI answers. This answer comes from the store FAQ and live catalogue.",
+    note: cohereConfigured() ? "Cohere returned an error — check the Vercel function logs for '[chat] Cohere failed' and that COHERE_MODEL is command-a-03-2025. This answer comes from the store FAQ and live catalogue." : "AI chat is not connected yet — add COHERE_API_KEY in Vercel to enable live AI answers. This answer comes from the store FAQ and live catalogue.",
   });
 }
