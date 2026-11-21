@@ -21,6 +21,7 @@ export default function AuthForm({ mode, next = "/dashboard" }) {
 
   return (
     <form onSubmit={submit} className="glass mx-auto w-full max-w-md space-y-5 rounded-3xl p-8">
+      <img src="/images/login-art.webp" alt="Nexavo AI marketplace" className="h-auto w-full rounded-2xl" />
       {reg && <div><label className="label">Full name</label><input className="input" required value={f.name} onChange={set("name")} placeholder="Your name" /></div>}
       <div><label className="label">Email</label><input className="input" type="email" required value={f.email} onChange={set("email")} placeholder="you@example.com" /></div>
       <div><label className="label">Password</label><input className="input" type="password" required minLength={reg ? 8 : 1} value={f.password} onChange={set("password")} placeholder={reg ? "At least 8 characters" : "Your password"} /></div>
